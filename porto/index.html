@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fahrana Kamila Portfolio</title>
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Import Font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Color Variables - Galaxy Theme */
+        :root {
+            --dark-space: #0a0e23;       /* Deep space blue */
+            --medium-space: #1a1f3b;     /* Space purple */
+            --light-space: #2a3158;      /* Nebula blue */
+            --white: #ffffff;
+            --accent: #9d65ff;          /* Purple nebula */
+            --light-accent: #b58aff;    /* Light purple */
+            --hover-accent: rgba(157, 101, 255, 0.2);
+            --glass: rgba(173, 216, 230, 0.15);
+        }
+
+        body {
+            background-color: var(--dark-space);
+            color: var(--white);
+            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Galaxy Background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(157, 101, 255, 0.15) 0%, transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(101, 178, 255, 0.15) 0%, transparent 30%),
+                linear-gradient(135deg, var(--dark-space) 0%, var(--medium-space) 100%);
+            z-index: -2;
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(90deg, var(--accent), var(--light-accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 31, 59, 0.95);
+            backdrop-filter: blur(8px);
+            padding: 1.5rem 2rem;
+            z-index: 1000;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid rgba(157, 101, 255, 0.3);
+        }
+
+        header.scrolled {
+            padding: 1rem 2rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            transition: all 0.2s ease;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            font-size: 0.9rem;
+            padding: 0.5rem 0;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.2s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 8rem 2rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Section */
+        #home {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .hero-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(157, 101, 255, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(30px);
+            z-index: -1;
+        }
+
+        .hero-image img {
+            width: 280px;
+            height: 350px;
+            border-radius: 15px;
+            object-fit: cover;
+            object-position: top;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 3px solid rgba(157, 101, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .hero-image img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 30px rgba(157, 101, 255, 0.3);
+            border-color: var(--accent);
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 0.5rem;
+            color: var(--white);
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin-bottom: 2rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--light-accent));
+            border-radius: 2px;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background-color: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(157, 101, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover {
+            background-color: var(--hover-accent);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(157, 101, 255, 0.2);
+            color: var(--white);
+            border-color: var(--light-accent);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        /* Scroll Down Button */
+        .scroll-down {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--accent);
+            animation: bounce 1.5s infinite;
+        }
+
+        .scroll-down i {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .scroll-down span {
+            font-size: 0.9rem;
+        }
+
+        /* Skills Section */
+        #skills {
+            text-align: center;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-card {
+            background: rgba(26, 31, 59, 0.95);
+            padding: 2rem;
+            border-radius: 12px;
+            width: 160px;
+            transition: all 0.2s;
+            border: 1px solid rgba(157, 101, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(157, 101, 255, 0.1) 0%, transparent 70%);
+            transition: 0.5s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            background: rgba(157, 101, 255, 0.2);
+            border-color: var(--accent);
+            box-shadow: 0 10px 20px rgba(157, 101, 255, 0.2);
+        }
+
+        .skill-card:hover::before {
+            top: 0;
+            left: 0;
+        }
+
+        .skill-card i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .skill-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+
+        .skill-card p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        /* Education Section */
+        #education {
+            text-align: center;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 3rem auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent 0%, var(--accent) 15%, var(--accent) 85%, transparent 100%);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+
+        .timeline-item {
+            padding: 15px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .timeline-item.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: var(--dark-space);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+
+        .left {
+            left: 0;
+            text-align: right;
+        }
+
+        .right {
+            left: 50%;
+            text-align: left;
+        }
+
+        .left::after {
+            right: -8px;
+        }
+
+        .right::after {
+            left: -8px;
+        }
+
+        .timeline-content {
+            padding: 25px;
+            background: rgba(26, 31, 59, 0.95);
+            border-radius: 8px;
+            border: 1px solid rgba(181, 138, 255, 0.3);
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(157, 101, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: 0.5s;
+        }
+
+        .timeline-item:hover .timeline-content {
+            transform: scale(1.05);
+            border-color: var(--accent);
+            box-shadow: 0 8px 20px rgba(157, 101, 255, 0.2);
+            background: rgba(157, 101, 255, 0.2);
+        }
+
+        .timeline-item:hover .timeline-content::before {
+            opacity: 1;
+        }
+
+        .timeline-content h3 {
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content p {
+            color: rgba(181, 138, 255, 0.9);
+            margin-bottom: 0.3rem;
+        }
+
+        /* Certificates Section */
+        #certificates {
+            text-align: center;
+        }
+
+        .certificates-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .certificate-card {
+            background: rgba(26, 31, 59, 0.95);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.2s;
+            border: 1px solid rgba(157, 101, 255, 0.3);
+            position: relative;
+        }
+
+        .certificate-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(157, 101, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: 0.5s;
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 20px rgba(157, 101, 255, 0.2);
+        }
+
+        .certificate-card:hover::before {
+            opacity: 1;
+        }
+
+        .certificate-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .certificate-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 70%, rgba(26, 31, 59, 0.9) 100%);
+        }
+
+        .certificate-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .certificate-card:hover .certificate-image img {
+            transform: scale(1.05);
+        }
+
+        .certificate-info {
+            padding: 1.5rem;
+        }
+
+        .certificate-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+
+        .certificate-info p {
+            color: rgba(181, 138, 255, 0.8);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            text-align: center;
+        }
+
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            text-align: left;
+            padding: 2rem;
+            background: rgba(26, 31, 59, 0.95);
+            border-radius: 8px;
+            border: 1px solid rgba(157, 101, 255, 0.3);
+            transition: all 0.5s ease;
+            animation: pulse 2s infinite, float 6s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-info::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(157, 101, 255, 0.1) 0%, transparent 70%);
+            opacity: 0.5;
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            padding: 2rem;
+                        background: rgba(26, 31, 59, 0.95);
+            border-radius: 8px;
+            border: 1px solid rgba(157, 101, 255, 0.3);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(157, 101, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: 0.5s;
+        }
+
+        .contact-form:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(157, 101, 255, 0.2);
+        }
+
+        .contact-form:hover::before {
+            opacity: 1;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-item i {
+            font-size: 1.3rem;
+            margin-right: 1rem;
+            color: var(--accent);
+            width: 24px;
+            text-align: center;
+        }
+
+        /* Social Media Links */
+        .social-links-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            color: rgba(181, 138, 255, 0.9);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent), var(--light-accent));
+            transition: width 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .social-link:hover::before {
+            width: 100%;
+        }
+
+        .social-link i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            width: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: rgb(252, 251, 241);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(26, 31, 59, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            color: var(--white);
+            transition: all 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(157, 101, 255, 0.1);
+            box-shadow: 0 0 10px rgba(157, 101, 255, 0.2);
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(26, 31, 59, 0.3);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(157, 101, 255, 0.3);
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(157, 101, 255, 0.05) 0%, transparent 70%);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 1rem 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-links li {
+            margin: 0 1rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.5rem;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateY(-3px) scale(1.1);
+        }
+
+        .copyright {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-15px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-7px) translateX(-50%);
+            }
+        }
+
+        /* Pulse animation for contact section */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(157, 101, 255, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(157, 101, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(157, 101, 255, 0);
+            }
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Shooting star animation */
+        @keyframes shooting-star {
+            0% {
+                transform: translateX(0) translateY(0);
+                opacity: 1;
+            }
+            70% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(1000px) translateY(-300px);
+                opacity: 0;
+            }
+        }
+
+        /* Add shooting stars */
+        .shooting-star {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px white;
+            animation: shooting-star linear infinite;
+            z-index: -1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item::after {
+                left: 21px;
+            }
+
+            .left, .right {
+                left: 0;
+                text-align: left;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            section {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .hero-content {
+                padding-right: 0;
+            }
+
+            .contact-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .hero-image img {
+                width: 220px;
+                height: 280px;
+            }
+
+            .contact-info {
+                animation: float 6s ease-in-out infinite, pulse 2s infinite;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .skills-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .skill-card {
+                width: 80%;
+                padding: 1.5rem;
+            }
+
+            .hero-image img {
+                width: 180px;
+                height: 240px;
+            }
+
+            .certificates-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Shooting stars will be added by JavaScript -->
+    
+    <!-- Header & Navigation -->
+    <header id="main-header">
+        <nav>
+            <div class="logo gradient-text">portofolio</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#certificates">Certificates</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home">
+        <div class="hero-content">
+            <h1>Hi, I'm <span class="gradient-text">Fahrana Kamila</span></h1>
+            <h2 class="gradient-text">Information System Student</h2>
+            <p>I am a Hafidz of the Quran, which reflects strong memorization skills, discipline, and a high level of commitment. I am also passionate about technology and currently pursuing my studies at Pamulang University. I enjoy learning programming languages and building projects to enhance my skills in web development and software engineering.</p>
+            <a href="#contact" class="btn">Get In Touch</a>
+        </div>
+        <div class="hero-image">
+            <img src="WhatsApp Image 2025-07-21 at 20.06.02_7d1d05b8.jpg" alt="Profile Photo">
+        </div>
+        <a href="#skills" class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+            <span>Scroll Down</span>
+        </a>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="title gradient-text">My Skills</h2>
+        <div class="skills-container">
+            <div class="skill-card">
+                <i class="fas fa-file-word"></i>
+                <h3>MS Word</h3>
+                <p>intermediate</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-file-excel"></i>
+                <h3>MS Excel</h3>
+                <p>intermediate</p>
+            </div>
+            <div class="skill-card">
+                <i class="fab fa-python"></i>
+                <h3>Python</h3>
+                <p>Basic</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-brain"></i>
+                <h3>Strong Memorization</h3>
+                <p>Excellent</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <h2 class="title gradient-text">Education</h2>
+        <div class="timeline">
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <h3>2024 - Present</h3>
+                    <p>Informatics Engineering</p>
+                    <p>Pamulang University</p>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <h3>January 2025</h3>
+                    <p>Basic C++ Course</p>
+                    <p>Skilvul</p>
+                </div>
+            </div>
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <h3>December 2024</h3>
+                    <p>Basic HTML & CSS</p>
+                    <p>Dicoding</p>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <h3>September 2025</h3>
+                    <p>Information System</p>
+                    <p>Bina Sarana Informatika University</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates">
+        <h2 class="title gradient-text">My Certificates</h2>
+        <div class="certificates-container">
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <img src="html.png" alt="Certificate 1">
+                </div>
+                <div class="certificate-info">
+                    <h3>Basic HTML & CSS</h3>
+                    <p>Always Ngoding Dec 2024</p>
+                    <a href="#" class="btn">View Certificate</a>
+                </div>
+            </div>
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <img src="dicoding 1.png" alt="Certificate 2">
+                </div>
+                <div class="certificate-info">
+                    <h3>ElevaltexDicoding Live#1</h3>
+                    <p>Webinar Dicoding 2025</p>
+                    <a href="#" class="btn">View Certificate</a>
+                </div>
+            </div>
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <img src="dicoding2.png" alt="Certificate 3">
+                </div>
+                <div class="certificate-info">
+                    <h3>ElevaltexDicoding Live#2</h3>
+                    <p>Webinar Dicoding 2025</p>
+                    <a href="#" class="btn">View Certificate</a>
+                </div>
+            </div>
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <img src="skilvul.png" alt="Certificate 4">
+                </div>
+                <div class="certificate-info">
+                    <h3>Basic C++</h3>
+                    <p>Course Skilvul Jan 2025</p>
+                    <a href="#" class="btn">View Certificate</a>
+                </div>
+            </div>
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <img src="webinar.png" alt="Certificate 5">
+                </div>
+                <div class="certificate-info">
+                    <h3>Webinar Artificial Intelligence</h3>
+                    <p>Pamulang University</p>
+                    <a href="#" class="btn">View Certificate</a>
+                </div>
+            </div>
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <img src="Screenshot 2025-07-22 112845.png" alt="Certificate 6">
+                </div>
+                <div class="certificate-info">
+                    <h3>Webinar Masa Depan Web Development</h3>
+                    <p>Pamulang University</p>
+                    <a href="#" class="btn">View Certificate</a>
+                </div>
+            </div>
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <img src="Screenshot 2025-07-22 202204.png" alt="Certificate 7">
+                </div>
+                <div class="certificate-info">
+                    <h3>Seminar Agama & Pendidikan</h3>
+                    <p>Pamulang University</p>
+                    <a href="#" class="btn">View Certificate</a>
+                </div>
+            </div>
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <img src="Screenshot 2025-07-22 203356.png" alt="Certificate 8">
+                </div>
+                <div class="certificate-info">
+                    <h3>Workshop Tuntas Tugas Akhir</h3>
+                    <p>Pamulang University</p>
+                    <a href="#" class="btn">View Certificate</a>
+                </div>
+            </div>
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <img src="" alt="Certificate 9">
+                </div>
+                <div class="certificate-info">
+                    <h3>Magang</h3>
+                    <p>AGPG Summer Job</p>
+                    <a href="#" class="btn">View Certificate</a>
+                </div>
+            </div>
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <img src="" alt="Certificate 10">
+                </div>
+                <div class="certificate-info">
+                    <h3>Tahfidz 30 Juz</h3>
+                    <a href="#" class="btn">View Certificate</a>
+                </div>
+            </div>
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <img src="" alt="Certificate 11">
+                </div>
+                <div class="certificate-info">
+                    <h3>Munaqosyah 10 Juz</h3>
+                    <a href="#" class="btn">View Certificate</a>
+                </div>
+            </div>
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <img src="" alt="Certificate 12">
+                </div>
+                <div class="certificate-info">
+                    <h3>Munaqosyah 5 Juz</h3>
+                    <a href="#" class="btn">View Certificate</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+                <h2 class="title gradient-text">Get In Touch</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3 class="gradient-text">Contact Information</h3>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>fhr.kmilaa@gmail.com</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <p>+62 857 1677 1250</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Bekasi, Indonesia</p>
+                </div>
+                
+                <!-- Vertical Social Media Links -->
+                <div class="social-links-vertical">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-instagram"></i> @fhr.kmilaa
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-linkedin"></i> Fahrana Kamila
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-github"></i> fahranakmila
+                    </a>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3 class="gradient-text">Send Me a Message</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <ul class="footer-links">
+            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="#"><i class="fab fa-github"></i></a></li>
+        </ul>
+        <p class="copyright">&copy; 2024 Fahrana Kamila. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Animasi saat scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scroll untuk navigasi
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Animasi elemen saat muncul di viewport
+            const sections = document.querySelectorAll('section');
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            timelineItems.forEach(item => {
+                observer.observe(item);
+            });
+
+            // Efek scroll header
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Form submission
+            const form = document.querySelector('.contact-form form');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! I will get back to you soon.');
+                form.reset();
+            });
+
+            // Create shooting stars
+            function createShootingStars() {
+                const starCount = 5;
+                for (let i = 0; i < starCount; i++) {
+                    const star = document.createElement('div');
+                    star.classList.add('shooting-star');
+                    
+                    // Random position
+                    const startX = Math.random() * window.innerWidth;
+                    const startY = Math.random() * window.innerHeight;
+                    
+                    // Random size
+                    const size = Math.random() * 2 + 1;
+                    
+                    // Random animation duration
+                    const duration = Math.random() * 5 + 5;
+                    
+                    // Random delay
+                    const delay = Math.random() * 10;
+                    
+                    star.style.left = startX + 'px';
+                    star.style.top = startY + 'px';
+                    star.style.width = size + 'px';
+                    star.style.height = size + 'px';
+                    star.style.animationDuration = duration + 's';
+                    star.style.animationDelay = delay + 's';
+                    
+                    document.body.appendChild(star);
+                    
+                    // Remove star after animation completes
+                    setTimeout(() => {
+                        star.remove();
+                    }, (duration + delay) * 1000);
+                }
+                
+                // Create new stars periodically
+                setTimeout(createShootingStars, 2000);
+            }
+            
+            // Start creating shooting stars
+            createShootingStars();
+        });
+    </script>
+</body>
+</html>
